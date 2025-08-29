@@ -22,12 +22,16 @@ chrome.storage.sync.get({ prompts: [] }, (data) => {
           func: (promptText) => {
             const input = document.querySelector('div[contenteditable="true"]');
             if (!input) return;
+
             input.focus();
             input.innerText = promptText;
+
+            // Dispatch events to simulate typing and trigger UI updates
             input.dispatchEvent(new Event("input", { bubbles: true }));
             input.dispatchEvent(new Event("change", { bubbles: true }));
+            input.dispatchEvent(new Event("keyup", { bubbles: true })); // Added this line
           },
-          args: [prompt] // use the actual saved text
+          args: [prompt]
         });
       });
     });

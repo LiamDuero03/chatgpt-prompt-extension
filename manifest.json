@@ -4,13 +4,20 @@
   "version": "1.0",
   "description": "Quickly insert custom prompt templates into ChatGPT.",
   "permissions": ["storage", "scripting", "activeTab"],
+  "background": {
+    "service_worker": "background.js"
+  },
   "action": {
     "default_popup": "popup.html"
   },
   "options_page": "options.html",
   "content_scripts": [
     {
-      "matches": ["https://chat.openai.com/*"],
+      "matches": [
+        "https://chat.openai.com/*",
+        "https://chatgpt.com/*",
+        "https://gemini.google.com/*"
+      ],
       "js": ["content.js"]
     }
   ]
