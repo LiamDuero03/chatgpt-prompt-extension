@@ -40,20 +40,7 @@ git clone https://github.com/LiamDuero03/chatgpt-prompt-extension.git
 
 ---
 
-## Default Starter Prompts
 
-* **Prompt 1:** "Summarize the following text in 3 sentences:"
-* **Prompt 2:** "Generate a creative title for this content:"
-* **Prompt 3:** "Convert the following text into a professional email:"
-
----
-
-## Contributing
-
-Feel free to fork the repository and submit pull requests.
-Make sure to test all changes locally before submitting.
-
----
 
 ## License
 
