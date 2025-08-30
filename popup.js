@@ -1,37 +1,41 @@
+const container = document.getElementById("buttons");
+
+// Load prompts from storage
 chrome.storage.sync.get({ prompts: [] }, (data) => {
-  let prompts = data.prompts;
+  const prompts = data.prompts || [];
 
-  // If nothing is saved yet, initialize with empty strings
-  if (!prompts || prompts.length === 0) {
-    prompts = ["", "", ""];
-  }
-
-  const container = document.getElementById("buttons");
   container.innerHTML = ""; // clear old buttons
 
-  prompts.forEach((prompt, index) => {
+  if (prompts.length === 0) {
+    // Optional: show a placeholder if no prompts
+    const placeholder = document.createElement("p");
+    placeholder.textContent = "No prompts available. Add some in Options.";
+    container.appendChild(placeholder);
+    return;
+  }
+
+  prompts.forEach((prompt) => {
     const btn = document.createElement("button");
-    btn.textContent = `Insert Prompt ${index + 1}`;
-    btn.style.display = "block";
-    btn.style.margin = "5px 0";
+    btn.className = "prompt-btn";
+    btn.textContent = prompt.name || "Untitled Prompt";
 
     btn.addEventListener("click", () => {
       chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         chrome.scripting.executeScript({
           target: { tabId: tabs[0].id },
-          func: (promptText) => {
+          func: (promptContent) => {
             const input = document.querySelector('div[contenteditable="true"]');
             if (!input) return;
 
             input.focus();
-            input.innerText = promptText;
+            input.innerText = promptContent;
 
             // Dispatch events to simulate typing and trigger UI updates
             input.dispatchEvent(new Event("input", { bubbles: true }));
             input.dispatchEvent(new Event("change", { bubbles: true }));
-            input.dispatchEvent(new Event("keyup", { bubbles: true })); // Added this line
+            input.dispatchEvent(new Event("keyup", { bubbles: true }));
           },
-          args: [prompt]
+          args: [prompt.content]
         });
       });
     });

@@ -1,104 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Prompt Settings</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 15px;
-      background: #f9f9f9;
-      color: #333;
-    }
-
-    .container {
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-      max-width: 600px;
-      margin: auto;
-    }
-
-    h2 {
-      margin-top: 0;
-      font-size: 1.4rem;
-      text-align: center;
-    }
-
-    label {
-      font-weight: bold;
-      margin-top: 10px;
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    textarea {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 10px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-family: monospace;
-      font-size: 0.9rem;
-      resize: vertical;
-    }
-
-    button {
-      margin-top: 15px;
-      background: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      padding: 10px 20px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.2s;
-      display: block;
-      width: 100%;
-    }
-
-    button:hover {
-      background: #45a049;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Prompt Settings</title>
+<style>
+  body { font-family: Arial; margin: 0; padding: 15px; background: #f9f9f9; color: #333; }
+  .container { background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.15); max-width: 600px; margin: auto; }
+  h2 { margin-top: 0; font-size: 1.4rem; text-align: center; }
+  .prompt { border: 1px solid #ccc; padding: 10px; border-radius: 6px; margin-bottom: 10px; }
+  input[name="name"] { width: 100%; padding: 5px; margin-bottom: 5px; font-weight: bold; }
+  textarea { width: 100%; box-sizing: border-box; padding: 8px; border-radius: 6px; border: 1px solid #ccc; font-family: monospace; font-size: 0.9rem; resize: vertical; }
+  button { margin-top: 5px; background: #4CAF50; color: white; border: none; border-radius: 6px; padding: 8px; font-size: 1rem; cursor: pointer; transition: background 0.2s; }
+  button:hover { background: #45a049; }
+  .delete-btn { background: #f44336; margin-left: 5px; }
+  .add-btn { margin-top: 10px; width: 100%; }
+</style>
 </head>
 <body>
-  <div class="container">
-    <h2>Edit Prompts</h2>
-
-    <label for="prompt1">Ask a question:</label>
-    <textarea id="prompt1" rows="6">{
-  "role": "You are a highly skilled and knowledgeable AI-Assistant in a scientifc field. Your purpose is to provide clear, accurate, and comprehensive information.",
-  "context": "The user is asking a question about. They need a response that is easy to understand but also highly detailed and technically accurate. The goal is to provide excellent support and assistance",
-  "output_format": "The response should be structured as follows: A brief, direct answer to the main question.\n2. A detailed explanation with key concepts bolded.\n3. A summary or conclusion. \n\nUse Markdown for formatting, including headings, lists, and bold text. Where appplicable cite revelant sources to add credibility!",
-  "what_to_avoid": "Do not include any irrelevant or verbose information. Avoid using jargon without defining it. Do not hallucinate or provide information you are not certain about. Do not use conversational fillers like 'I think' or 'In my opinion'.",
-  "instruction": "Based on the role, context, output format, and what to avoid, generate an excellent response to the user's prompt. The response should be concise, accurate, and well-structured, directly addressing all parts of the user's request.",
-  "question":""
-}</textarea>
-
-    <label for="prompt2">Explain:</label>
-    <textarea id="prompt2" rows="6">{
-  "role": "You are an expert AI-Assistant with deep knowledge in scientific and technical fields. Your goal is to provide responses that are highly accurate, logically structured, and easy to understand, with a focus on teaching and explaining concepts thoroughly.",
-  "context": "The user asks questions about technical or scientific topics and expects answers that combine clarity with depth. Your responses should avoid vagueness and focus on verified concepts, definitions, and examples.",
-  "output_format": "The response should have the following structure:\n\n1. **Brief Direct Answer**: A one-to-two sentence clear answer to the main question.\n2. **Detailed Explanation**: A structured, in-depth explanation using **bold** for key terms, and including examples or code snippets when relevant. Include citations to authoritative sources if applicable.\n3. **Visual or Conceptual Aid (Optional)**: If helpful, provide a simple diagram, table, or structured representation to clarify complex ideas.\n4. **Summary / Conclusion**: Concise recap emphasizing the key points and their practical relevance.",
-  "what_to_avoid": "Avoid including irrelevant information, unverified claims, or vague statements. Do not use unnecessary jargon without explanation. Avoid conversational fillers or personal opinions.",
-  "instruction": "Based on the role, context, output format, and what to avoid, generate a highly accurate, structured, and easy-to-understand explanation for the user’s question. Make it suitable for both beginners and advanced learners, using examples, analogies, and references where helpful."
-}</textarea>
-
-    <label for="prompt3">Improve answer:</label>
-    <textarea id="prompt3" rows="6">{
-  "role": "You are an expert AI-Assistant with deep knowledge in scientific and technical fields. Your goal is to provide responses that are highly accurate, logically structured, and easy to understand, with a focus on teaching and explaining concepts thoroughly.",
-  "context": "The user has received an answer to a previous question but is not fully satisfied. They want a **more precise, detailed, and clearly explained version** of the same answer, keeping technical accuracy and clarity as priorities.",
-  "output_format": "The response should follow this structure:\n\n1. **Brief Direct Answer**: A one-to-two sentence clear answer to the main question, refined for precision.\n2. **Detailed Explanation**: A structured, in-depth explanation using **bold** for key terms, including examples, analogies, or code snippets where relevant. Highlight any points from the previous answer that can be clarified or expanded.\n3. **Visual or Conceptual Aid (Optional)**: Include a simple diagram, table, or structured representation to make complex ideas clearer.\n4. **Summary / Conclusion**: Concise recap emphasizing the most important points and practical relevance, improving clarity from the previous version.",
-  "what_to_avoid": "Do not repeat vague, unverified, or irrelevant information. Avoid conversational fillers or personal opinions. Avoid introducing content not related to the original question unless it enhances clarity or precision.",
-  "instruction": "Based on the role, context, output format, and what to avoid, **generate an improved, more precise version of your previous answer**. Focus on clarity, depth, and accuracy, and provide any additional explanations or examples that make the answer more understandable and technically complete."
-}</textarea>
-
-    <button id="save">Save</button>
-  </div>
-
-  <script src="options.js"></script>
+<div class="container">
+  <h2>Edit Prompts</h2>
+  <div id="prompt-list"></div>
+  <button id="add-prompt" class="add-btn">+ Add New Prompt</button>
+  <button id="save">Save All</button>
+</div>
+<script src="options.js"></script>
 </body>
 </html>
