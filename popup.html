@@ -1,11 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Prompt Inserter</title>
+  <style>
+    /* Body */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 10px;
+      background: #f9f9f9;
+      width: 300px;
+      color: #333;
+    }
+
+    /* Container */
+    .container {
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      text-align: center;
+    }
+
+    h3 {
+      margin: 0 0 10px 0;
+      font-size: 1.2rem;
+    }
+
+    /* Buttons wrapper */
+    #buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    /* Buttons */
+    .prompt-btn {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 8px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .prompt-btn:hover {
+      background: #45a049;
+    }
+  </style>
 </head>
 <body>
-  <h3>Choose a Prompt</h3>
-  <div id="buttons"></div>
+  <div class="container">
+    <h3>Choose a Prompt</h3>
+    <div id="buttons"></div>
+  </div>
+
   <script src="popup.js"></script>
 </body>
 </html>
